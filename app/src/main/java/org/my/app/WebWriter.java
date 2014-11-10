@@ -111,7 +111,7 @@ public class WebWriter {
         makeBody(builder);
         pos.print(builder.toString());
         if (pos.checkError()) {
-            System.out.println("Error writing header");
+            System.out.println("Error writing body");
             return false;
         }
         return true;
