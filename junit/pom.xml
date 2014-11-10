@@ -1,0 +1,130 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 201, Red Hat and individual contributors as identified
+  ~ by the @authors tag. See the copyright.txt in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License as
+  ~ published by the Free Software Foundation; either version 2.1 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  ~
+  ~ @authors Andrew Dinn
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.my</groupId>
+    <artifactId>tutorial2-junit-tests</artifactId>
+    <packaging>jar</packaging>
+    <description>
+        The 2nd byteman tutorial provides example of how to use Byteman to test an application
+    </description>
+    <version>1.0.0</version>
+    <name>tutorial2a-junit-tests</name>
+    <parent>
+        <groupId>org.my</groupId>
+        <artifactId>tutorial2a</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <debug>true</debug>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <includes>
+                        <include>org/my/WebWriterTest.java</include>
+                    </includes>
+                    <!-- ensure we don't inherit a byteman jar form any env settings -->
+                    <environmentVariables>
+                        <BYTEMAN_HOME></BYTEMAN_HOME>
+                    </environmentVariables>
+                    <systemProperties>
+                        <property>
+                            <name>org.jboss.byteman.home</name>
+                            <value></value>
+                        </property>
+                    </systemProperties>
+                    <!-- make sure maven puts the byteman jar in the classpath rather than in a manifest jar -->
+                    <useManifestOnlyJar>false</useManifestOnlyJar>
+                    <forkMode>once</forkMode>
+                    <parallel>false</parallel>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.my</groupId>
+            <artifactId>tutorial2a-app</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.byteman</groupId>
+            <artifactId>byteman</artifactId>
+            <scope>test</scope>
+            <version>${byteman.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.byteman</groupId>
+            <artifactId>byteman-submit</artifactId>
+            <scope>test</scope>
+            <version>${byteman.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.byteman</groupId>
+            <artifactId>byteman-install</artifactId>
+            <scope>test</scope>
+            <version>${byteman.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.byteman</groupId>
+            <artifactId>byteman-bmunit</artifactId>
+            <scope>test</scope>
+            <version>${byteman.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>1.6</version>
+            <scope>system</scope>
+            <systemPath>${tools.jar}</systemPath>
+        </dependency>
+    </dependencies>
+</project>
+
