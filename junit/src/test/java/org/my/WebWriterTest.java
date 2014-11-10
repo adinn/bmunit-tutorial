@@ -46,26 +46,10 @@ public class WebWriterTest
     @Test
     public void testWriteHead()
     {
+        System.out.println("-------- testWriteHead ---------");
         WebWriter writer = new WebWriter("foo.html", "Andrew");
         writer.writeHeader(System.out);
-    }
-
-    @Test
-    @BMRule(name = "handle file not found",
-            targetClass = "FileOutputStream",
-            // targetMethod = "write(byte[], int, int)",
-            targetMethod = "write(byte[],int,int)",
-            condition = "incrementCounter($1) == 2",
-            action = "throw new java.io.IOException( \"Ha ha Byteman fooled you!\" )"
-            )
-    public void testWriteBody()
-    {
-        WebWriter writer = new WebWriter("foo.html", "Andrew");
-        PrintStream ps = writer.openFile();
-        writer.writeHeader(ps);
-        boolean result = writer.writeBody(ps);
-        ps.close();
-        Assert.assertFalse(result);
+        System.out.println("-------- testWriteHead ---------\n");
     }
 
     @Test
@@ -76,8 +60,30 @@ public class WebWriterTest
             )
     public void handleFileNotFound()
     {
+        System.out.println("-------- handleFileNotFound ---------");
         WebWriter writer = new WebWriter("foo.html", "Andrew");
         PrintStream ps = writer.openFile();
         Assert.assertTrue(ps == null);
+        System.out.println("-------- handleFileNotFound ---------\n");
+    }
+
+    @Test
+    @BMRule(name = "test write body",
+            targetClass = "FileOutputStream",
+            targetMethod = "write(byte[],int,int)",
+            condition = "incrementCounter($1) == 2",
+            action = "throw new java.io.IOException( \"Ha ha Byteman fooled you!\" )"
+            )
+    public void testWriteBody()
+    {
+        System.out.println("-------- testWriteBody ---------");
+        WebWriter writer = new WebWriter("foo.html", "Andrew");
+        PrintStream ps = writer.openFile();
+        boolean result = writer.writeHeader(ps);
+        Assert.assertTrue(result);
+        result = writer.writeBody(ps);
+        ps.close();
+        Assert.assertFalse(result);
+        System.out.println("-------- testWriteBody ---------\n");
     }
 }

@@ -3,15 +3,7 @@ CLASS WebWriter
 METHOD makeHeader
 AT EXIT
 BIND result = $builder.toString()
-IF NOT result.contains("<HEAD>")  || NOT result.contains("</HEAD>")
+IF debug("checking for HEAD and /HEAD tags") &&
+   (NOT result.contains("<HEAD>")  || NOT result.contains("</HEAD>"))
 DO THROW new RuntimeException("invalid header format");
-ENDRULE
-
-RULE check body
-CLASS WebWriter
-METHOD makeBody
-AT EXIT
-BIND result = $builder.toString()
-IF NOT result.contains("<BODY>") || NOT result.contains("</BODY>")
-DO THROW new RuntimeException("invalid body format");
 ENDRULE

@@ -129,7 +129,7 @@ public class WebWriter {
     private void makeHeader(StringBuilder builder)
     {
         builder.append("<HEAD>\n");
-        builder.append(" <TITLE>\n");
+        builder.append("  <TITLE>\n");
         builder.append("  Welcome to the web page for ");
         builder.append(username);
         builder.append('\n');
@@ -141,7 +141,7 @@ public class WebWriter {
     private void makeBody(StringBuilder builder)
     {
         builder.append("<BODY>\n");
-        builder.append(" <H1>\n");
+        builder.append("  <H1>\n");
         builder.append("This is the web page for <em>");
         builder.append(username);
         builder.append("</em>\n");
