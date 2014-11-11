@@ -5,8 +5,11 @@ This git repository contains a maven project which provides all the code
 and Byteman rule scripts used for the introductory tutorial for BMUnit,
 the package which integrates Byteman into JUnit and TestNG. It provides
 a simple example of how you can extend the range of your JUnit tests using
-Byteman. n.b. use of TestNG and/or ant in place of JUnit and/or maven is
-also supported but is not (yet) covered in this tutorial.
+Byteman and shows how you would configure maven the maven surefire plugin
+to support the use of BMUnit.
+
+n.b. use of TestNG and/or ant in place of JUnit and/or maven is also
+supported but is not (yet) covered in this tutorial.
 
 Instructions
 ============
