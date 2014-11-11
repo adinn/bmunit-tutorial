@@ -5,12 +5,12 @@ Code used for the introductory tutorial for BMUnit which integrates Byteman into
 
 To build the app execute
 
-    mvn compile
+    mvn install
 
 To run the application execute
 
-    mvn compile
-    java -classpath app/target/tutorial2a-app-1.0.0.jar WebWriter foo.html Andrew
+    mvn install
+    java -classpath app/target/tutorial2a-app-1.0.0.jar org.my.app.WebWriter foo.html Andrew
 
 You should find a newly written file called foo.html. Open it in a browser and
 check that the title and body mention the name Andrew. Rerun with a different file or
@@ -34,7 +34,7 @@ The first test should print the HTML header content to System.out.
 The validation rule found in junit/src/test/resources/check.btm checks
  that the header test contains a <HEAD> and </HEAD> element. Note that
  the debug call in the conditions always returns true but only prints
-  output if debug or verbose tarce is enabled (see follow ups below).
+  output if debug or verbose trace is enabled (see follow ups below).
 
 The second test should detect and handle a file not found failure. The Byteman
 rule in the BMRule annotation is used to ensure that the file open throws an
