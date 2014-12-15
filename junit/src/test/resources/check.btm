@@ -5,5 +5,6 @@ AT EXIT
 BIND result = $builder.toString()
 IF debug("checking for HEAD and /HEAD tags") &&
    (NOT result.contains("<HEAD>")  || NOT result.contains("</HEAD>"))
-DO THROW new RuntimeException("invalid header format");
+DO debug("makeHeader result does not include both <HEAD> and </HEAD>");
+    THROW new RuntimeException("invalid header format");
 ENDRULE

@@ -30,7 +30,8 @@
     <artifactId>tutorial2-junit-tests</artifactId>
     <packaging>jar</packaging>
     <description>
-        The 2nd byteman tutorial provides example of how to use Byteman to test an application
+        The 2nd byteman tutorial provides example of how to use BMUnit to test
+        an application using Byteman and JUnit in combination
     </description>
     <version>1.0.0</version>
     <name>tutorial2a-junit-tests</name>

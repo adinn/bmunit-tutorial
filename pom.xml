@@ -44,13 +44,19 @@
     </modules>
     <!--
         By default we just build the app code. We use a profile to schedule building
-        of the junit module
+        of the junit and junit2 modules
     -->
     <profiles>
         <profile>
             <id>junit</id>
             <modules>
                 <module>junit</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>junit2</id>
+            <modules>
+                <module>junit2</module>
             </modules>
         </profile>
     </profiles>

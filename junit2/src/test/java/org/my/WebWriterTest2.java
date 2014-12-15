@@ -44,15 +44,6 @@ import java.io.PrintStream;
 public class WebWriterTest2
 {
     @Test
-    public void testWriteHead()
-    {
-        System.out.println("-------- testWriteHead ---------");
-        WebWriter writer = new WebWriter("foo.html", "Andrew");
-        writer.writeHeader(System.out);
-        System.out.println("-------- testWriteHead ---------\n");
-    }
-
-    @Test
     @BMRule(name = "handle file not found",
             targetClass = "FileOutputStream",
             targetMethod = "<init>(File)",
@@ -71,7 +62,7 @@ public class WebWriterTest2
     @BMRule(name = "test write body",
             targetClass = "FileOutputStream",
             targetMethod = "write(byte[],int,int)",
-            condition = "incrementCounter($1) == 2",
+            condition = "incrementCounter($0) == 2",
             action = "throw new java.io.IOException( \"Ha ha Byteman fooled you!\" )"
             )
     public void testWriteBody()
