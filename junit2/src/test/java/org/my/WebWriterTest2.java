@@ -41,7 +41,7 @@ import java.io.PrintStream;
 @RunWith(org.jboss.byteman.contrib.bmunit.BMUnitRunner.class)
 @BMUnitConfig(loadDirectory="target/test-classes")
 @BMScript(value="check.btm")
-public class WebWriterTest
+public class WebWriterTest2
 {
     @Test
     public void testWriteHead()
