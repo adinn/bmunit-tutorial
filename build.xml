@@ -1,0 +1,77 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2014, Red Hat and individual contributors as identified
+  ~ by the @authors tag. See the copyright.txt in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License as
+  ~ published by the Free Software Foundation; either version 2.1 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  ~
+  ~ @authors Andrew Dinn
+  -->
+
+<!--
+    ant build script for the second Byteman tutorial
+
+    ant build will build the tutorial2a jar
+
+    ant junit will test the sample app using junit using the simple
+    tracing rules to trace test execution
+
+    ant junit2 will test the sample app using junit using fault
+    injection rules to exercise exception handling code
+
+    ant testng will test the sample app using testng instead of junit
+
+-->
+
+<project name="tutorial2a" default="help" basedir=".">
+    <target name="help">
+        <echo message="Welcome to the second Byteman tutorial"/>
+        <echo message=""/>
+        <echo message="ant build will build the tutorial2a jar"/>
+        <echo message=""/>
+        <echo message="ant junit will test the sample app with junit using the simple"/>
+        <echo message="tracing rules to trace test execution"/>
+        <echo message=""/>
+        <echo message="ant junit2 will test the sample app with junit using fault"/>
+        <echo message="injection rules to exercise exception handling code"/>
+        <echo message=""/>
+        <echo message="ant testng will test the sample app with testng in place of junit"/>
+        <echo message=""/>
+    </target>
+    <target name="clean">
+        <ant dir="app" target="clean"/>
+        <ant dir="junit" target="clean"/>
+        <ant dir="junit2" target="clean"/>
+        <ant dir="testng" target="clean"/>
+        <delete file="foo.html" failonerror="false"/>
+    </target>
+    <target name="build">
+        <ant dir="app"/>
+    </target>
+    <target name="run">
+        <ant dir="app" target="run"/>
+    </target>
+    <target name="junit">
+        <ant dir="junit"/>
+    </target>
+    <target name="junit2">
+        <ant dir="junit2"/>
+    </target>
+    <target name="testng">
+        <ant dir="testng"/>
+    </target>
+</project>

@@ -26,17 +26,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.my</groupId>
-    <artifactId>tutorial2a-app</artifactId>
+    <artifactId>bmunit-tutorial-app</artifactId>
     <packaging>jar</packaging>
     <description>
         The 2nd byteman tutorial provides example of how to use BMUnit to test
         an application using Byteman and JUnit in combination
     </description>
     <version>1.0.0</version>
-    <name>tutorial2a-app</name>
+    <name>bmunit-tutorial-app</name>
     <parent>
         <groupId>org.my</groupId>
-        <artifactId>tutorial2a</artifactId>
+        <artifactId>bmunit-tutorial</artifactId>
         <version>1.0.0</version>
     </parent>
     <build>

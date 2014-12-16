@@ -1,0 +1,123 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2011, Red Hat and individual contributors as identified
+  ~ by the @authors tag. See the copyright.txt in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License as
+  ~ published by the Free Software Foundation; either version 2.1 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  ~
+  ~ @authors Andrew Dinn
+  -->
+
+<!--
+    ant build script for the sample app junit tests which use byteman to do fault injection
+
+    ant test will build and run the tests
+-->
+
+<project name="tutorial2a-junit2" default="test" basedir=".">
+
+    <property environment="env"/>
+    <property name="byteman.home" value="${env.BYTEMAN_HOME}"/>
+
+    <property name="junit.jar" value="../lib/junit-4.8.2.jar"/>
+
+    <fail message="please set BYTEMAN_HOME">
+        <condition>
+            <not>
+                <isset property="byteman.home"/>
+            </not>
+        </condition>
+    </fail>
+
+    <fail message="please set JAVA_HOME">
+        <condition>
+            <not>
+                <isset property="java.home"/>
+            </not>
+        </condition>
+    </fail>
+
+    <fail message="cannot find byteman lib jars">
+        <condition>
+            <not>
+                <and>
+                    <available file="${byteman.home}/lib/byteman.jar"/>
+                    <available file="${byteman.home}/lib/byteman-submit.jar"/>
+                    <available file="${byteman.home}/lib/byteman-install.jar"/>
+                </and>
+            </not>
+        </condition>
+    </fail>
+
+    <fail message="cannot find byteman contrib jars">
+        <condition>
+            <not>
+                <available file="${byteman.home}/contrib/bmunit/byteman-bmunit.jar"/>
+            </not>
+        </condition>
+    </fail>
+
+    <fail message="cannot find JVM tools jar">
+        <condition>
+            <not>
+                <or>
+                    <available file="${java.home}/lib/tools.jar"/>
+                    <available file="${java.home}/../lib/tools.jar"/>
+                </or>
+            </not>
+        </condition>
+    </fail>
+
+    <target name="clean">
+        <delete dir="target"/>
+        <delete dir="." includes="TEST-*" failonerror="false"/>
+        <delete file="foo.html" failonerror="false"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="target"/>
+        <mkdir dir="target/test-classes"/>
+    </target>
+
+    <target name="compile">
+        <javac srcdir="src/test/java" includes="**/*.java" destdir="target/test-classes" debug="true" target="1.6">
+            <classpath>
+                <pathelement location="target/test-classes"/>
+                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="${testng.jar}"/>
+                <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="clean, init, compile">
+        <copy file="src/test/resources/check.btm" todir="target/test-classes"/>
+        <junit fork="true" showoutput="true" dir="." forkmode="once">
+            <classpath>
+                <pathelement location="target/test-classes"/>
+                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="${junit.jar}"/>
+                <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>
+                <fileset dir="${byteman.home}/lib" includes="byteman-submit.jar byteman-install.jar"/>
+                <pathelement location="${java.home}/lib/tools.jar"/>
+                <pathelement location="${java.home}/../lib/tools.jar"/>
+            </classpath>
+            <test name="org.my.WebWriterTest2"/>
+            <formatter type="plain"/>
+        </junit>
+    </target>
+</project>

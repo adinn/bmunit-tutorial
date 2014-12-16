@@ -1,15 +1,36 @@
-byteman-tutorial2a
-==================
+bmunit-tutorial
+===============
 
 This git repository contains a maven project which provides all the code
 and Byteman rule scripts used for the introductory tutorial for BMUnit,
 the package which integrates Byteman into JUnit and TestNG. It provides
-a simple example of how you can extend the range of your JUnit tests using
-Byteman and shows how you would configure maven the maven surefire plugin
-to support the use of BMUnit.
+a simple example of how you can extend the range of your JUnit/TestNG tests
+using Byteman and shows how you would configure the maven surefire plugin to
+support the use of BMUnit.
 
-n.b. use of TestNG and/or ant in place of JUnit and/or maven is also
-supported but is not (yet) covered in this tutorial.
+The project contains three submodules, junit, junit2 and testng. The first
+module provides an example of a simple Byteman test using JUnit. The second
+module provides a more complex JUnit test which uses Byteman to inject faults
+into the application, exercising the application's error handling code. The
+third module repeats the same tests as the second module but using TestNG to
+run the tests instead of JUnit.
+
+The project also includes ant scripts which allow the application to be built,
+run and tested using ant in place of maven. See the build.xml files for details
+of which targets to run.
+
+n.b. In order for ant builds to work you must obtain a local copy of the byteman
+jars. Download a release zip from the Byteman downloads page (follow the link
+from byteman.jboss.org), unzip it into a directory on your local disk and then
+set environment variable BYTEMAN_HOME to point to the directory into which you
+unzipped the release. Byteman release 2.2.0 or later is recommended.
+
+n.b.b. on Windows it is simplest to unzip into a top level directory on the C
+drive e.g. C:\tmp\Byteman. In particular, note that if you unzip into a directory
+whose pathname contains spaces (e.g. C:\Program Files\Byteman) then you will
+have to ensure that environment variable BYTEMAN_HOME refers to the directory
+using the equivalent translated DOS format filename which omits the spaces
+(e.g. you might might need to set BYTEMAN_HOME=C:\Progra~1\Byteman)
 
 Instructions
 ============
@@ -21,7 +42,7 @@ To build the app execute
 To run the application execute
 
     mvn install
-    java -classpath app/target/tutorial2a-app-1.0.0.jar org.my.app.WebWriter foo.html Andrew
+    java -classpath app/target/bmunit-tutorial-app-1.0.0.jar org.my.app.WebWriter foo.html Andrew
 
 You should find a newly written file called foo.html. Open it in a browser and
 check that the title and body mention the name Andrew. Rerun with a different file or

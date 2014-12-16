@@ -1,0 +1,54 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2011, Red Hat and individual contributors as identified
+  ~ by the @authors tag. See the copyright.txt in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU Lesser General Public License as
+  ~ published by the Free Software Foundation; either version 2.1 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  ~
+  ~ @authors Andrew Dinn
+  -->
+
+<!--
+    ant build script for the sample app
+
+    ant build will build the tutorial jar
+-->
+
+<project name="tutorial2a-app" default="build" basedir=".">
+    <target name="build" depends="clean, init, compile, jar">
+    </target>
+    <target name="clean">
+        <delete dir="target"/>
+        <delete file="foo.html" failonerror="false"/>
+    </target>
+    <target name="init">
+        <mkdir dir="target"/>
+        <mkdir dir="target/classes"/>
+    </target>
+    <target name="compile">
+        <javac srcdir="src/main/java" includes="**/*.java" destdir="target/classes" debug="true" target="1.6"/>
+    </target>
+    <target name="jar">
+        <jar destfile="target/tutorial2a-app-1.0.0.jar">
+            <fileset dir="target/classes" includes="**/*.class"/>
+        </jar>
+    </target>
+    <target name="run" depends="build">
+        <java classpath="target/tutorial2a-app-1.0.0.jar" classname="org.my.app.WebWriter" args="foo.html Andrew">
+        </java>
+    </target>
+</project>

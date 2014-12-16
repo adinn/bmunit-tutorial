@@ -27,14 +27,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.my</groupId>
-    <artifactId>bmunit-tutorial-junit-tests</artifactId>
+    <artifactId>bmunit-tutorial-testng-tests</artifactId>
     <packaging>jar</packaging>
     <description>
         The 2nd byteman tutorial provides example of how to use BMUnit to test
-        an application using Byteman and JUnit in combination
+        an application using Byteman and JUnit in combination. This module provides
+        an alternative showing how you can replace JUnit with TestNG
     </description>
     <version>1.0.0</version>
-    <name>bmunit-tutorial-junit-tests</name>
+    <name>bmunit-tutorial-testng-tests2</name>
     <parent>
         <groupId>org.my</groupId>
         <artifactId>bmunit-tutorial</artifactId>
@@ -58,7 +59,7 @@
                 <version>2.4.3</version>
                 <configuration>
                     <includes>
-                        <include>org/my/WebWriterTest.java</include>
+                        <include>org/my/WebWriterTest3.java</include>
                     </includes>
                     <!-- ensure we don't inherit a byteman jar form any env settings -->
                     <environmentVariables>
@@ -85,9 +86,10 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>5.14.6</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
