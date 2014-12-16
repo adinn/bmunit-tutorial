@@ -73,12 +73,12 @@ the debug call in the condition always returns true but only prints
 Satisfy yourself that the Byteman rule is really being executed by modifying
 the BMUnitConfig annotation to add attribute debug=true
 
-  . . .
-  @BMUnitConfig(loadDirectory="target/test-classes", debug=true)
-  @BMScript(value="check.btm")
-  public class WebWriterTest
-  {
-     . . .
+    . . .
+    @BMUnitConfig(loadDirectory="target/test-classes", debug=true)
+    @BMScript(value="check.btm")
+    public class WebWriterTest
+    {
+       . . .
      
 You should see debug trace showing the first debug statement being executed
 but not the second one:
