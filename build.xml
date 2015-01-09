@@ -37,7 +37,7 @@
 
 -->
 
-<project name="tutorial2a" default="help" basedir=".">
+<project name="bmunit-tutorial" default="help" basedir=".">
     <target name="help">
         <echo message="Welcome to the second Byteman tutorial"/>
         <echo message=""/>

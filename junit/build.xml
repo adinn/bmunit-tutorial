@@ -96,7 +96,7 @@
         <javac srcdir="src/test/java" includes="**/*.java" destdir="target/test-classes" debug="true" target="1.6">
             <classpath>
                 <pathelement location="target/test-classes"/>
-                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="../app/target/bmunit-tutorial-app-1.0.0.jar"/>
                 <pathelement location="${junit.jar}"/>
                 <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>
             </classpath>
@@ -108,7 +108,7 @@
         <junit fork="true" showoutput="true" dir="." forkmode="once">
             <classpath>
                 <pathelement location="target/test-classes"/>
-                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="../app/target/bmunit-tutorial-app-1.0.0.jar"/>
                 <pathelement location="${junit.jar}"/>
                 <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>
                 <fileset dir="${byteman.home}/lib" includes="byteman-submit.jar byteman-install.jar"/>

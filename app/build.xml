@@ -43,12 +43,12 @@
         <javac srcdir="src/main/java" includes="**/*.java" destdir="target/classes" debug="true" target="1.6"/>
     </target>
     <target name="jar">
-        <jar destfile="target/tutorial2a-app-1.0.0.jar">
+        <jar destfile="target/bmunit-tutorial-app-1.0.0.jar">
             <fileset dir="target/classes" includes="**/*.class"/>
         </jar>
     </target>
     <target name="run" depends="build">
-        <java classpath="target/tutorial2a-app-1.0.0.jar" classname="org.my.app.WebWriter" args="foo.html Andrew">
+        <java classpath="target/bmunit-tutorial-app-1.0.0.jar" classname="org.my.app.WebWriter" args="foo.html Andrew">
         </java>
     </target>
 </project>

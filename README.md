@@ -41,7 +41,7 @@ To build the app execute
 
 To run the application execute
 
-    mvn install
+    mvn package
     java -classpath app/target/bmunit-tutorial-app-1.0.0.jar org.my.app.WebWriter foo.html Andrew
 
 You should find a newly written file called foo.html. Open it in a browser and

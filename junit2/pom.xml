@@ -60,6 +60,10 @@
                     <includes>
                         <include>org/my/WebWriterTest2.java</include>
                     </includes>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <useManifestOnlyJar>true</useManifestOnlyJar>
+                    <forkMode>once</forkMode>
+                    <parallel>false</parallel>
                     <!-- ensure we don't inherit a byteman jar form any env settings -->
                     <environmentVariables>
                         <BYTEMAN_HOME></BYTEMAN_HOME>
@@ -70,10 +74,6 @@
                             <value></value>
                         </property>
                     </systemProperties>
-                    <!-- make sure maven puts the byteman jar in the classpath rather than in a manifest jar -->
-                    <useManifestOnlyJar>false</useManifestOnlyJar>
-                    <forkMode>once</forkMode>
-                    <parallel>false</parallel>
                 </configuration>
             </plugin>
         </plugins>
@@ -119,13 +119,23 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.sun</groupId>
-            <artifactId>tools</artifactId>
-            <version>1.6</version>
-            <scope>system</scope>
-            <systemPath>${tools.jar}</systemPath>
-        </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+          <id>use-toolsjar-profile</id>
+          <activation>
+            <jdk>[1.6,1.8]</jdk>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>com.sun</groupId>
+                  <artifactId>tools</artifactId>
+                  <version>1.6</version>
+                  <scope>system</scope>
+                  <systemPath>${tools.jar}</systemPath>
+              </dependency>
+          </dependencies>
+        </profile>
+    </profiles>
 </project>
 

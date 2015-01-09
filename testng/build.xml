@@ -99,7 +99,7 @@
         <javac srcdir="src/test/java" includes="**/*.java" destdir="target/test-classes" debug="true" target="1.6">
             <classpath>
                 <pathelement location="target/test-classes"/>
-                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="../app/target/bmunit-tutorial-app-1.0.0.jar"/>
                 <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>
                 <pathelement location="${testng.jar}"/>
             </classpath>
@@ -111,7 +111,7 @@
         <testng workingdir="." outputdir="target/test-output">
             <classpath>
                 <pathelement location="target/test-classes"/>
-                <pathelement location="../app/target/tutorial2a-app-1.0.0.jar"/>
+                <pathelement location="../app/target/bmunit-tutorial-app-1.0.0.jar"/>
                 <pathelement location="${junit.jar}"/>
                 <pathelement location="${testng.jar}"/>
                 <fileset dir="${byteman.home}/contrib/bmunit" includes="byteman-bmunit.jar"/>

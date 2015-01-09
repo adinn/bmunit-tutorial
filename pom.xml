@@ -37,14 +37,14 @@
     <name>bmunit-tutorial</name>
     <properties>
         <tools.jar>${java.home}/../lib/tools.jar</tools.jar>
-        <byteman.version>2.2.0.1</byteman.version>
+        <byteman.version>2.2.1</byteman.version>
     </properties>
     <modules>
         <module>app</module>
     </modules>
     <!--
-        By default we just build the app code. We use a profile to schedule building
-        of the junit and junit2 modules
+        By default we just build the app code. We use three extra profiles to schedule building
+        of the junit, junit2 and testng modules
     -->
     <profiles>
         <profile>
