@@ -8,8 +8,13 @@ a simple example of how you can extend the range of your JUnit/TestNG tests
 using Byteman and shows how you would configure the maven surefire plugin to
 support the use of BMUnit.
 
-See https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt#top for the actual tutorial.
+A full explanation of how the application and tests operate with
+instructions on how to run both is provided in the tutorial at
 
+    https://developer.jboss.org/wiki/BMUnitUsingBytemanWithJUnitOrTestNGFromMavenAndAnt#top
+
+Tutorial Summary
+================
 
 The project contains three submodules, junit, junit2 and testng. The first
 module provides an example of a simple Byteman test using JUnit. The second
