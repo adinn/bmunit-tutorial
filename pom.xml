@@ -37,7 +37,7 @@
     <name>bmunit-tutorial</name>
     <properties>
         <tools.jar>${java.home}/../lib/tools.jar</tools.jar>
-        <byteman.version>2.2.1</byteman.version>
+        <byteman.version>3.0.0</byteman.version>
     </properties>
     <modules>
         <module>app</module>
