@@ -114,14 +114,6 @@
             <artifactId>byteman-bmunit</artifactId>
             <scope>test</scope>
             <version>${byteman.version}</version>
-            <!--
-            <exclusions>
-                <exclusion>
-                    <groupId>org.testng</groupId>
-                    <artifactId>testng</artifactId>
-                </exclusion>
-            </exclusions>
-            -->
         </dependency>
     </dependencies>
     <profiles>
