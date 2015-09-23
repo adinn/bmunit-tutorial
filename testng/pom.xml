@@ -89,7 +89,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>5.14.6</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.byteman</groupId>
@@ -114,12 +114,14 @@
             <artifactId>byteman-bmunit</artifactId>
             <scope>test</scope>
             <version>${byteman.version}</version>
+            <!--
             <exclusions>
                 <exclusion>
                     <groupId>org.testng</groupId>
                     <artifactId>testng</artifactId>
                 </exclusion>
             </exclusions>
+            -->
         </dependency>
     </dependencies>
     <profiles>
